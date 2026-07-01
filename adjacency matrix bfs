@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int v=sc.nextInt();
+      int e=sc.nextInt();
+      int adj[][]=new int[v][v];
+      for(int i=0;i<e;i++)
+      {
+        int s=sc.nextInt();
+        int d=sc.nextInt();
+        adj[s][d]=1;
+       // adj[d][s]=1;
+
+      }bfs(adj,0,v);
+      
+    }
+    public static void bfs(int adj[][],int s,int v)
+    {
+      Queue<Integer> q=new LinkedList<>();
+      boolean visited[]=new boolean[v];
+      visited[s]=true;
+      q.offer(s);
+      while(!q.isEmpty())
+      {
+        int t=q.poll();
+        System.out.print(t+" ");
+        for(int i=0;i<v;i++)
+        {
+          if(adj[t][i]==1 && !visited[i])
+          {
+            q.offer(i);
+            visited[i]=true;
+          }
+        }
+      }
+    }
+}
